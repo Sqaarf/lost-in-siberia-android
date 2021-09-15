@@ -18,21 +18,22 @@ class Inventory {
 
     fun add(e : Any, q : Int? = null){
         if(e is Material && q != null){
-            inventoryMaterial[e] = q
-        }
-        else if (e is Craft && q == null){
+            if(!inventoryMaterial.containsKey(e)) {
+                inventoryMaterial[e] = q
+            } else {
+                inventoryMaterial[e] = inventoryMaterial[e]?.plus(q)!! //Incrementing the existent value
+            }
+        } else if (e is Craft && q == null){
             inventoryCrafts.add(e)
-        }
-        else{
+        } else{
             throw error("Inventory error")
         }
     }
 
-    fun remove(e : Material, q : Int = 1){
+    fun remove(e : Any, q : Int = 1){
         if(e is Material){
             inventoryMaterial[e]?.minus(q)
-        }
-        else{
+        } else{
             throw error("Inventory error")
         }
     }

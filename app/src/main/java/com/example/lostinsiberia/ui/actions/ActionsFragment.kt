@@ -20,7 +20,10 @@ class ActionsFragment : Fragment() {
     private lateinit var button: Button
 
     private lateinit var tmp_action : Action
+    private lateinit var tmp_am : ActionMaterial
+    private lateinit var tmp_ac : ActionCraft
     private lateinit var p : Player
+
 
     private var _binding: FragmentActionsBinding? = null
 
@@ -47,8 +50,8 @@ class ActionsFragment : Fragment() {
         val wood = Material("Wood")
         val stone = Material("Stone")
 
-        val action1 = ActionWithMaterial("Forage wood", wood, 2)
-        val action2 = ActionWithMaterial("Forage stone", stone, 1)
+        val action1 = ActionMaterial("Forage wood", wood, 2)
+        val action2 = ActionMaterial("Forage stone", stone, 1)
 
         val actions = Actions().actionManager
         actions.add(action1)
@@ -66,11 +69,13 @@ class ActionsFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
                 button.setOnClickListener {
-                    tmp_action = actions[p2]
-                    if(tmp_action is ActionWithMaterial){
 
+                    if (actions[p2] is ActionMaterial) { //If the action affect a material
+                        tmp_am = actions[p2] as ActionMaterial //Creating a ActionMaterial variable
+                        p.inventory.add(tmp_am.material, tmp_am.quantity)
+
+                        log_view.text = p.inventory.getIM()[tmp_am.material].toString()
                     }
-                    //log_view.text = actions[p2].name
                 }
             }
 

@@ -11,7 +11,7 @@ open class Action(name: String) {
 
 }
 
-class ActionWithMaterial(name: String, material: Material, quantity:Int) : Action(name) {
+class ActionMaterial(name: String, material: Material, quantity:Int) : Action(name) {
     val material = material
     val quantity = quantity
 
@@ -21,7 +21,7 @@ class ActionWithMaterial(name: String, material: Material, quantity:Int) : Actio
 
 }
 
-class ActionWithCraft(name: String, item: Craft) : Action(name) {
+class ActionCraft(name: String, item: Craft) : Action(name) {
     val item = item
 
     override fun addToPlayerInventory(p: Player){
