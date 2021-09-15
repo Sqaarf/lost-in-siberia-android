@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_actions">
+
+    <fragment
+        android:id="@+id/navigation_actions"
+        android:name="com.example.lostinsiberia.ui.actions.ActionsFragment"
+        android:label="@string/title_actions"
+        tools:layout="@layout/fragment_actions" />
+
+    <fragment
+        android:id="@+id/navigation_inventory"
+        android:name="com.example.lostinsiberia.ui.inventory.InventoryFragment"
+        android:label="@string/title_inventory"
+        tools:layout="@layout/fragment_inventory" />
+
+    <fragment
+        android:id="@+id/navigation_options"
+        android:name="com.example.lostinsiberia.ui.options.OptionsFragment"
+        android:label="@string/title_options"
+        tools:layout="@layout/fragment_options" />
+</navigation>

@@ -1,0 +1,89 @@
+package com.example.lostinsiberia.ui.actions
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.lostinsiberia.R
+import com.example.lostinsiberia.databinding.FragmentActionsBinding
+import com.example.lostinsiberia.utils.*
+
+class ActionsFragment : Fragment() {
+
+    private lateinit var actionsViewModel: ActionsViewModel
+
+    private lateinit var action_spinner: Spinner
+    private lateinit var log_view: TextView
+    private lateinit var button: Button
+
+    private lateinit var tmp_action : Action
+    private lateinit var p : Player
+
+    private var _binding: FragmentActionsBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+
+
+    ): View {
+        actionsViewModel =
+                ViewModelProvider(this).get(ActionsViewModel::class.java)
+
+        _binding = FragmentActionsBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        action_spinner = root.findViewById(R.id.action_spinner)
+        //val actions = resources.getStringArray(R.array.actions_spinner)
+
+        val wood = Material("Wood")
+        val stone = Material("Stone")
+
+        val action1 = ActionWithMaterial("Forage wood", wood, 2)
+        val action2 = ActionWithMaterial("Forage stone", stone, 1)
+
+        val actions = Actions().actionManager
+        actions.add(action1)
+        actions.add(action2)
+
+        
+        action_spinner.adapter = activity?.let { ArrayAdapter<Action>(it, android.R.layout.simple_list_item_1, actions) }
+
+        log_view = root.findViewById(R.id.log_view)
+        button = root.findViewById(R.id.action_button)
+
+        p = Player("Sqaarf")
+
+        action_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+                button.setOnClickListener {
+                    tmp_action = actions[p2]
+                    if(tmp_action is ActionWithMaterial){
+
+                    }
+                    //log_view.text = actions[p2].name
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                log_view.text = "Please select an action"
+            }
+        }
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

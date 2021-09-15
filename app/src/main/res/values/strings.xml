@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Lost In Siberia</string>
+    <string name="title_actions">Actions</string>
+    <string name="title_inventory">Inventory</string>
+    <string name="title_options">Options</string>
+    <string name="desc_action_spinner">Action spinner</string>
+    <string name="text_action_button">Make</string>
+    
+    <string-array name="actions_spinner">
+        <item>Test 1</item>
+        <item>Test 2</item>
+        <item>Test 3</item>
+    </string-array>
+</resources>
