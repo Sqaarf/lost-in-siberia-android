@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.lostinsiberia.R
 import com.example.lostinsiberia.databinding.FragmentActionsBinding
+import com.example.lostinsiberia.ui.inventory.InventoryFragment
 import com.example.lostinsiberia.utils.*
 
 class ActionsFragment : Fragment() {
@@ -23,6 +24,8 @@ class ActionsFragment : Fragment() {
     private lateinit var tmp_am : ActionMaterial
     private lateinit var tmp_ac : ActionCraft
     private lateinit var p : Player
+
+
 
 
     private var _binding: FragmentActionsBinding? = null
@@ -57,6 +60,7 @@ class ActionsFragment : Fragment() {
         actions.add(action1)
         actions.add(action2)
 
+
         
         action_spinner.adapter = activity?.let { ArrayAdapter<Action>(it, android.R.layout.simple_list_item_1, actions) }
 
@@ -64,6 +68,7 @@ class ActionsFragment : Fragment() {
         button = root.findViewById(R.id.action_button)
 
         p = Player("Sqaarf")
+        p.setInventory(this.arguments?.get("inventory") as Inventory?)
 
         action_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -84,8 +89,11 @@ class ActionsFragment : Fragment() {
             }
         }
 
+
+
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,10 +1,15 @@
 package com.example.lostinsiberia.utils
 
-import java.util.ArrayList
-
 class Player(name: String) {
-    val name = name
-    val inventory = Inventory()
+    var name = name
+    var inventory = Inventory()
+
+    @JvmName("setInventory1")
+    fun setInventory(i: Inventory?){
+        if (i != null) {
+            inventory = i
+        }
+    }
 
     /**
     val wood_efficiency = 1.0
