@@ -1,6 +1,7 @@
 package com.example.lostinsiberia.utils
 
-class Material(name : String) {
+class Material(id : Int, name : String) {
+    val id = id
     val name = name
 
 }

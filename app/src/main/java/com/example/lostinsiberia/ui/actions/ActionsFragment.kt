@@ -1,6 +1,7 @@
 package com.example.lostinsiberia.ui.actions
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.lostinsiberia.R
 import com.example.lostinsiberia.databinding.FragmentActionsBinding
 import com.example.lostinsiberia.ui.inventory.InventoryFragment
 import com.example.lostinsiberia.utils.*
+import com.google.gson.Gson
 
 class ActionsFragment : Fragment() {
 
@@ -50,8 +52,8 @@ class ActionsFragment : Fragment() {
         action_spinner = root.findViewById(R.id.action_spinner)
         //val actions = resources.getStringArray(R.array.actions_spinner)
 
-        val wood = Material("Wood")
-        val stone = Material("Stone")
+        val wood = Material(1, "Wood")
+        val stone = Material(2, "Stone")
 
         val action1 = ActionMaterial("Forage wood", wood, 2)
         val action2 = ActionMaterial("Forage stone", stone, 1)
@@ -97,6 +99,7 @@ class ActionsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
         _binding = null
     }
 }
